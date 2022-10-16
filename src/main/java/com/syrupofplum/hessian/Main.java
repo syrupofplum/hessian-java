@@ -47,6 +47,7 @@ public class Main {
     static void printByteArray(byte[] bytes) {
         String[] ret = new String[bytes.length];
         int[] intArray = parseByteArray(bytes);
+        System.out.println(intArray.length);
         for (int i = 0; i < intArray.length; i++) {
             ret[i] = "0x" + Integer.toHexString(intArray[i]);
         }
@@ -74,13 +75,15 @@ public class Main {
         return serialize(v);
     }
 
+    public static byte[] serializeBinary(byte[] v) {
+        return serialize(v);
+    }
+
     public static void main(String[] args) {
-        String a = "c";
-        StringBuilder sb = new StringBuilder();
-//        System.out.println(Arrays.toString(parseByteArray(a.getBytes(StandardCharsets.UTF_8))));
-        for (int i = 0; i < 32769; i++) {
-            sb.append(a);
+        byte[] v = new byte[8189];
+        for (int i = 0; i < 8189; i++) {
+            v[i] = 1;
         }
-        printByteArray(serializeString(sb.toString()));
+        printByteArray(serializeBinary(v));
     }
 }
