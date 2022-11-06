@@ -7,6 +7,22 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+class Test implements Serializable {
+    private int v;
+
+    public int getV() {
+        return v;
+    }
+
+    public void setV(int v) {
+        this.v = v;
+    }
+}
 
 /**
  * @author syrupofplum
@@ -53,6 +69,12 @@ public class Main {
         }
         String printString = "[" + StringUtils.join(ret, ",") + "]";
         System.out.println(printString);
+
+        for (int i = 0; i < intArray.length; i++) {
+            if (intArray[i] != 1) {
+                System.out.println(i + " " + "0x" + Integer.toHexString(intArray[i]));
+            }
+        }
     }
 
     public static byte[] serializeBool(boolean v) {
@@ -79,11 +101,27 @@ public class Main {
         return serialize(v);
     }
 
+    public static byte[] serializeList(int[] v) {
+        return serialize(v);
+    }
+
+    public static byte[] serializeList(List<Integer> v) {
+        return serialize(v);
+    }
+
+    public static byte[] serializeList(Test[] v) {
+        return serialize(v);
+    }
+
     public static void main(String[] args) {
-        byte[] v = new byte[8189];
-        for (int i = 0; i < 8189; i++) {
-            v[i] = 1;
-        }
-        printByteArray(serializeBinary(v));
+        int[] v = {};
+//        System.out.println(Arrays.toString(v));
+//        List<Integer> v = new ArrayList<>();
+        printByteArray(serializeList(v));
+//        String typ = "/[com.syrupofplum.hessian.Test";
+//        printByteArray(serializeString(typ));
+
+//        Test[] v = new Test[0];
+//        printByteArray(serializeList(v));
     }
 }
