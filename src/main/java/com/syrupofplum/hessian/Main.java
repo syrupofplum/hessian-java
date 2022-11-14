@@ -113,15 +113,23 @@ public class Main {
         return serialize(v);
     }
 
+    public static byte[] serializeStruct(Test v) {
+        return serialize(v);
+    }
+
     public static void main(String[] args) {
-        int[] v = {};
+//        int[] v = {};
 //        System.out.println(Arrays.toString(v));
 //        List<Integer> v = new ArrayList<>();
-        printByteArray(serializeList(v));
-//        String typ = "/[com.syrupofplum.hessian.Test";
-//        printByteArray(serializeString(typ));
+//        printByteArray(serializeList(v));
+        String typ = "com.syrupofplum.hessian.Test";
+        printByteArray(serializeString(typ));
 
 //        Test[] v = new Test[0];
 //        printByteArray(serializeList(v));
+
+//        Test v = new Test();
+//        v.setV(1);
+//        printByteArray(serializeStruct(v));
     }
 }
